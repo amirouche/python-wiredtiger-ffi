@@ -1,0 +1,8 @@
+.eggs
+build/
+dist
+wiredtiger_ffi.egg-info/
+__pycache__
+_wiredtiger.py
+*.pyc
+*~
