@@ -1,7 +1,7 @@
 from wiredtiger_ffi import Wiredtiger
 
 # init
-wiredtiger = Wiredtiger.open('tmp', 'create')
+wiredtiger = Wiredtiger('tmp', 'create')
 session = wiredtiger.open_session()
 session.create('table:test', "key_format=q,value_format=q")
 cursor = session.open_cursor('table:test')
