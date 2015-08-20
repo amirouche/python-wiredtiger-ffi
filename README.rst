@@ -18,10 +18,10 @@ Build your own database
 Informations
 ------------
 
-- Tested with [wiredtiger](http://wiredtiger.com) 2.6.1
+- Tested with `wiredtiger <http://wiredtiger.com>` 2.6.1
 - License: GPLv2 or GPLv3 (same as wiredtiger)
-- Author: [amirouche](mailto:amirouche@hypermove.net)
-- Forge: [github](http://github.com/amirouche/python-wiredtiger-ffi)
+- Author: `amirouche <mailto:amirouche@hypermove.net>`_
+- Forge: `github <http://github.com/amirouche/python-wiredtiger-ffi`_
  
 
 Kesako wiredtiger ?
