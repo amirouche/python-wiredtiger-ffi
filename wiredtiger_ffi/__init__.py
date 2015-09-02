@@ -88,22 +88,34 @@ class Session:
         check(self._session[0].rollback_transaction(self._session[0], config))
 
 
+def make_item(x):
+    item = ffi.new('WT_ITEM *')
+    item[0].data = ffi.new('char[]', x)
+    item[0].size = len(x)
+    return item
+
+
 TO_CDATA = {
     'S': lambda x: ffi.new('char[]', x.encode('utf-8')),
-    'Q': lambda x: ffi.new('uint64_t *', x),
-    'q': lambda x: ffi.new('int64_t *', x),
+    'Q': lambda x: ffi.cast('uint64_t', x),
+    'q': lambda x: ffi.cast('int64_t', x),
+    'u': make_item
 }
 
 INIT_CDATA = {
     'S': lambda: ffi.new('char **'),
-    'Q': lambda: ffi.new('uint64_t **'),
-    'q': lambda: ffi.new('int64_t **'),
+    'Q': lambda: ffi.new('uint64_t *'),
+    'q': lambda: ffi.new('int64_t *'),
+    'u': lambda: ffi.new('WT_ITEM *'),
+    'U': lambda: ffi.new('WT_ITEM *'),
 }
 
 FROM_CDATA = {
     'S': lambda x: ffi.string(x[0]).decode('utf-8'),
-    'Q': lambda x: x[0][0],
-    'q': lambda x: x[0][0],
+    'Q': lambda x: x[0],
+    'q': lambda x: x[0],
+    'u': lambda x: ffi.string(ffi.cast('char *', x[0].data), x[0].size),
+    'U': lambda x: ffi.string(ffi.cast('char *', x[0].data), x[0].size)
 }
 
 
@@ -111,6 +123,7 @@ class Cursor:
 
     def __init__(self, cursor):
         self._cursor = cursor
+        self.__unset_ptr()
 
     def _key_format(self):
         return ffi.string(self._cursor[0].key_format).decode('utf-8')
@@ -155,16 +168,17 @@ class Cursor:
         args.pop(0)
 
     def __unset_ptr(self):
-        self._key_ptr = None
-        self._value_ptr = None
+        self.__key_ptr = list()
+        self.__value_ptr = list()
 
     def insert(self):
-        self._cursor[0].insert(self._cursor[0])
-        self.__unset_ptr()
+        error = self._cursor[0].insert(self._cursor[0])
+        return error
 
     def reset(self):
-        self._cursor[0].reset(self._cursor[0])
+        error = self._cursor[0].reset(self._cursor[0])
         self.__unset_ptr()
+        return error
 
     def next(self):
         return self._cursor[0].next(self._cursor[0])
@@ -176,4 +190,6 @@ class Cursor:
         return self._cursor[0].search(self._cursor[0])
 
     def search_near(self):
-        return self._cursor[0].search_near(self._cursor[0])
+        out = ffi.new('int *')
+        code = self._cursor[0].search_near(self._cursor[0], out)
+        return check(code, out[0])
