@@ -24,7 +24,7 @@ Informations
 - Tested with `wiredtiger <http://wiredtiger.com>` 2.6.1
 - License: GPLv2 or GPLv3 (same as wiredtiger)
 - Author: `amirouche <mailto:amirouche@hypermove.net>`_
-- Forge: `github <http://github.com/amirouche/python-wiredtiger-ffi`_
+- Forge: `github <http://github.com/amirouche/python-wiredtiger-ffi>`_
 
 
 Kesako wiredtiger ?
