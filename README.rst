@@ -9,11 +9,12 @@ Build your own database
 
 - ACID
 - NoSQL
+- table-based
+- persistent
 - networkless
 - automatic index
 - multithread support
 - ordered key/value store
-
 
 Informations
 ------------
@@ -22,7 +23,7 @@ Informations
 - License: GPLv2 or GPLv3 (same as wiredtiger)
 - Author: `amirouche <mailto:amirouche@hypermove.net>`_
 - Forge: `github <http://github.com/amirouche/python-wiredtiger-ffi>`_
- 
+
 
 Kesako wiredtiger ?
 -------------------
@@ -33,7 +34,9 @@ with global transactions.
 wiredtiger is a versatile database built by the engineers who created
 Oracle Berkeley Database (formely known as Sleepycat Database and bsddb).
 
-It can provide a performance boost for your application but also simplify
-its design by using a schema that is simpler than the one you would use
-with SQLite.
+It can provide a performance boost for your application but also
+simplify its design by using a schema that is simpler than the one you
+would use with SQLite. It also target much larger volume and complex
+workload than SQLite.
 
+It's the default backend in mongodb since 3.2.
