@@ -1,3 +1,6 @@
+*.o
+*.c
+*.so
 .eggs
 build/
 dist
