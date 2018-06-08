@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='wiredtiger-ffi',
-    version='0.2',
+    version='0.3',
     author='Amirouche Boubekki',
     author_email='amirouche@hypermove.net',
     url='https://github.com/amirouche/python-wiredtiger-ffi',
