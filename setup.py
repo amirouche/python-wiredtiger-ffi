@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='wiredtiger-ffi',
-    version='0.3',
+    version='0.3.1',
     author='Amirouche Boubekki',
     author_email='amirouche@hypermove.net',
     url='https://github.com/amirouche/python-wiredtiger-ffi',
@@ -24,9 +24,7 @@ setup(
     install_requires=["cffi>=1.0.0"],
     classifiers=[
         'Intended Audience :: Developers',
-        'Operating System :: OS Independent',
         'Topic :: Software Development',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 2.7',
     ],
 )
