@@ -1,7 +1,5 @@
-from ctypes.util import find_library
-from _wiredtiger import ffi
-
-lib = ffi.dlopen(find_library('wiredtiger'))
+from wiredtiger_ffi._wiredtiger import ffi
+from wiredtiger_ffi._wiredtiger import lib
 
 
 class WiredtigerException(Exception):

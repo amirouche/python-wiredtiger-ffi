@@ -13,7 +13,7 @@ print('value format', cursor._value_format())
 
 
 # insert
-for x in range(10**6):
+for x in range(10**5):
     print('iteration: {}'.format(x))
     a, b, c = (
         random.randint(0, 2**64),
