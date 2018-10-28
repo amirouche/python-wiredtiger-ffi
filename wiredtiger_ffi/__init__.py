@@ -191,3 +191,6 @@ class Cursor:
         out = ffi.new('int *')
         code = self._cursor[0].search_near(self._cursor[0], out)
         return check(code, out[0])
+
+    def close(self):
+        check(self._cursor[0].close(self._cursor[0]))
