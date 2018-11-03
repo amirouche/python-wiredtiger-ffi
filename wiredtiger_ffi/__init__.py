@@ -88,7 +88,7 @@ class Session:
 
 def make_item(x):
     item = ffi.new('WT_ITEM *')
-    item[0].data = ffi.new('char[]', x)
+    item[0].data = ffi.from_buffer(x)
     item[0].size = len(x)
     return item
 
@@ -112,7 +112,7 @@ FROM_CDATA = {
     'S': lambda x: ffi.string(x[0]).decode('utf-8'),
     'Q': lambda x: x[0],
     'q': lambda x: x[0],
-    'u': lambda x: ffi.string(ffi.cast('char *', x[0].data), x[0].size),
+    'u': lambda x: ffi.buffer(ffi.cast('char *', x[0].data), x[0].size),
     'U': lambda x: ffi.string(ffi.cast('char *', x[0].data), x[0].size)
 }
 
