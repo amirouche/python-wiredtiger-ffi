@@ -57,19 +57,7 @@ struct __wt_cursor {
   int (*(close))(WT_CURSOR *cursor);
   int (*(reconfigure))(WT_CURSOR *cursor, const char *config);
 
-  struct {
-    WT_CURSOR *tqe_next;
-    WT_CURSOR **tqe_prev;
-  } q;
-
-  uint64_t recno;
-  uint8_t raw_recno_buf[9];
-  void *json_private;
-  void *lang_private;
-  WT_ITEM key, value;
-  int saved_err;
-  const char *internal_uri;
-  uint32_t flags;
+  ...;
 };
 
 typedef enum {
@@ -140,12 +128,14 @@ struct __wt_session {
                   const char *name, const char *config);
   int (*(begin_transaction))(WT_SESSION *session, const char *config);
   int (*(commit_transaction))(WT_SESSION *session, const char *config);
+  int (*(prepare_transaction))(WT_SESSION *session, const char *config);
   int (*(rollback_transaction))(WT_SESSION *session, const char *config);
   int (*(timestamp_transaction))(WT_SESSION *session, const char *config);
   int (*(checkpoint))(WT_SESSION *session, const char *config);
   int (*(snapshot))(WT_SESSION *session, const char *config);
   int (*(transaction_pinned_range))(WT_SESSION* session, uint64_t *range);
   int (*(transaction_sync))(WT_SESSION *session, const char *config);
+  int (*(breakpoint))(WT_SESSION *session);
 };
 
 struct __wt_connection {
